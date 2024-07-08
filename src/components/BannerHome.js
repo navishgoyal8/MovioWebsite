@@ -1,12 +1,14 @@
 import React,{useEffect, useState} from 'react'
 import { useSelector } from 'react-redux';
 import { FaAngleLeft,FaAngleRight } from "react-icons/fa6";
+import { Link } from 'react-router-dom';
 
 const BannerHome = () => {
 
   const data = useSelector(state => state.movioData.bannerData);
   const imageURL = useSelector(state => state.movioData.imageURL);
   const [currentImage,setCurrentImage] = useState(10);
+  console.log("bannerHoem",data)
 
   const handleNext = () => {
       if(currentImage < data.length-1){
@@ -61,9 +63,12 @@ const BannerHome = () => {
                     <span>|</span>
                     <p>View : {Number(movie.popularity).toFixed(0)}</p>
                   </div>
-                  <button className='bg-white px-4 py-2 text-black font-bold rounded mt-4 hover:bg-gradient-to-l from-red-700 to-orange-500 shadow-md transition-all hover:scale-105'>
+                  <Link to={"/"+movie?.media_type+"/"+movie.id} >
+                    <button className='bg-white px-4 py-2 text-black font-bold rounded mt-4 hover:bg-gradient-to-l from-red-700 to-orange-500 shadow-md transition-all hover:scale-105'>
                     Play Now
                   </button>
+                  </Link>
+                  
                   </div>
               </div>
                   </div>
